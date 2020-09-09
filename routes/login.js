@@ -31,21 +31,29 @@ router.post("/", (req, res) => {
                     if (bres) {
                         const payload = { email: email };
                         const secret = process.env.JWT_SECRET;
-                        console.log(process.env.JWT_SECRET);
 
                         const token = jwt.sign(payload, secret, { expiresIn: '1h'});
-
-                        window.localStorage.setItem('token', token);
-
-                        res.status(201).json({
+                        res.cookie('token', 'tokenValue', {
+          maxAge: 60 * 60 * 1000, // 1 hour
+  httpOnly: true,
+  secure: true,
+  sameSite: true,
+});
+                        console.log(res.cookies);
+                        res.json({
                             data: {
-                                msg: bres
+                                type: "success",
+                                msg: "User logged in",
+                                token: token
                             }
                         });
                     } else {
-                        res.status(400).json({
+                        res.status(401).json({
                             data: {
-                                msg: bres
+                                status: 401,
+                                title: "Wrong password",
+                                detail: "Password is incorrect"
+
                             }
                         });
                     }

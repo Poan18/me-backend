@@ -8,12 +8,14 @@ const hello = require('./routes/hello');
 const register = require('./routes/register');
 const login = require('./routes/login');
 const reports = require('./routes/reports');
+const cookieParser = require('cookie-parser');
 
 
 const app = express();
 const port = 1337;
 
 app.use(cors());
+app.use(cookieParser());
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 

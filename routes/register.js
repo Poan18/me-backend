@@ -19,15 +19,18 @@ router.post("/", (req, res) => {
             email,
             hash, (err) => {
             if (err) {
-                res.status(400).json({
-                     data: {
-                         msg: "ERROR!"
+                res.status(409).json({
+                     errors: {
+                         status: 409,
+                         msg: "Email already in use.",
+                         detail: err.message
                      }
                  });
             } else {
                 res.status(201).json({
                      data: {
-                         msg: "Got a POST request, sending back 201 Created"
+                         status: 201,
+                         msg: "Account was created."
                      }
                  });
             }
