@@ -29,17 +29,14 @@ router.post("/", (req, res) => {
                 bcrypt.compare(req.body.password, row.password, function(err, bres) {
                     // res is true if correct password, otherwise false.
                     if (bres) {
+
                         const payload = { email: email };
                         const secret = process.env.JWT_SECRET;
 
                         const token = jwt.sign(payload, secret, { expiresIn: '1h'});
-                        res.cookie('token', 'tokenValue', {
-          maxAge: 60 * 60 * 1000, // 1 hour
-  httpOnly: true,
-  secure: true,
-  sameSite: true,
-});
-                        console.log(res.cookies);
+
+                        res.cookie('token', token, {maxAge: 9000000, httpOnly: true});
+
                         res.json({
                             data: {
                                 type: "success",
@@ -47,6 +44,7 @@ router.post("/", (req, res) => {
                                 token: token
                             }
                         });
+
                     } else {
                         res.status(401).json({
                             data: {

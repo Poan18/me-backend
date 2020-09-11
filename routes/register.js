@@ -5,12 +5,17 @@ var router = express.Router();
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database('./db/texts.sqlite');
 
+//JSON Web Tokens
+const jwt = require('jsonwebtoken');
+
 // For hashing purposes
 const bcrypt = require('bcryptjs');
 const saltRounds = 10;
 
 // Basic route
-router.post("/", (req, res) => {
+router.post("/",
+    (req, res, next ) => checkToken(req, res, next),
+    (req, res) => {
     var pass = req.body.password;
     var email = req.body.email;
 

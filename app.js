@@ -4,12 +4,15 @@ const morgan = require('morgan');
 const cors = require('cors');
 
 const index = require('./routes/index');
-const hello = require('./routes/hello');
 const register = require('./routes/register');
 const login = require('./routes/login');
 const reports = require('./routes/reports');
+const weeks = require('./routes/weeks');
+const week = require('./routes/week');
 const cookieParser = require('cookie-parser');
 
+//JSON Web Tokens
+const jwt = require('jsonwebtoken');
 
 const app = express();
 const port = 1337;
@@ -26,9 +29,10 @@ if (process.env.NODE_ENV !== 'test') {
 }
 
 app.use('/', index);
-app.use('/hello', hello);
 app.use('/register', register);
 app.use('/login', login);
+app.use('/api/weeks', weeks);
+app.use('/reports/week', week);
 app.use('/reports', reports);
 
 // Add routes for 404 and error handling
