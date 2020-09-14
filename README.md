@@ -1,3 +1,6 @@
+Github repo:
+https://github.com/Poan18/me-backend/
+
 Available commands:
 
 Install dependencies:
