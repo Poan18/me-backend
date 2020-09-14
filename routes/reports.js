@@ -5,13 +5,40 @@ var router = express.Router();
 const jwt = require('jsonwebtoken');
 
 const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database('./db/texts.sqlite')
+const db = new sqlite3.Database('./db/texts.sqlite');
+
+router.post("/update",
+    (req, res, next) => checkToken(req, res, next),
+    (req, res) => {
+        var week = req.body.week;
+        var content = req.body.content;
+
+        db.run("UPDATE weeks SET content = ? WHERE week = ?",
+        content,
+        week,
+    (err) => {
+        if (err) {
+            console.log("lolok");
+            res.status(401).json({
+                data: {
+                    status: 400,
+                    error: 'Error'
+                }
+            });
+        } else {
+            res.status(200).json({
+                data: {
+                    status: 200,
+                    msg: 'Report updated'
+                }
+            });
+        }
+    })
+});
 
 router.get("/", (req, res) => {
     db.all("SELECT week FROM weeks",
     (err, theWeeks) => {
-        console.log("Sent week information.");
-        console.log(theWeeks);
         res.json(theWeeks);
     })
 });
@@ -21,7 +48,6 @@ router.post("/",
     (req, res) => {
         var week = req.body.week;
         var content = req.body.content;
-        console.log("lol...");
 
         db.run("INSERT INTO weeks (week, content) VALUES (?, ?)",
         week,
@@ -40,10 +66,14 @@ function checkToken(req, res, next) {
     jwt.verify(token, secret, function(err, decoded) {
         if (err) {
             // send error response
-            res.send(err);
+            res.json({
+                data: {
+                    type: "token-error",
+                    error: "Invalid token",
+                }
+            });
         } else {
             // Valid token send on the request
-            console.log("Good job.");
             next();
         }
     });
