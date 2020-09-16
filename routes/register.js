@@ -14,7 +14,6 @@ const saltRounds = 10;
 
 // Basic route
 router.post("/",
-    (req, res, next ) => checkToken(req, res, next),
     (req, res) => {
     var pass = req.body.password;
     var email = req.body.email;
