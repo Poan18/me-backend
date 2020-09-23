@@ -3,7 +3,7 @@ var router = express.Router();
 
 // Database purposes
 const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database('./db/texts.sqlite');
+const db = require("../db/database.js");
 
 // For hashing purposes
 const bcrypt = require('bcryptjs');

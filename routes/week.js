@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database('./db/texts.sqlite');
+const db = require("../db/database.js");
 
 router.post("/:id/update",
     (req, res, next) => checkToken(req, res, next),

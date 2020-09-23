@@ -5,7 +5,7 @@ var router = express.Router();
 const jwt = require('jsonwebtoken');
 
 const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database('./db/texts.sqlite');
+const db = require("../db/database.js");
 
 router.post("/update",
     (req, res, next) => checkToken(req, res, next),
