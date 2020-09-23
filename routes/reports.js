@@ -4,7 +4,7 @@ var router = express.Router();
 //JSON Web Tokens
 const jwt = require('jsonwebtoken');
 
-const sqlite3 = require('sqlite3').verbose();
+// Database
 const db = require("../db/database.js");
 
 router.post("/update",
@@ -18,7 +18,6 @@ router.post("/update",
         week,
     (err) => {
         if (err) {
-            console.log("lolok");
             res.status(401).json({
                 data: {
                     status: 400,
@@ -63,7 +62,7 @@ function checkToken(req, res, next) {
     const token = req.cookies.token;
     const secret = process.env.JWT_SECRET;
 
-    jwt.verify(token, secret, function(err, decoded) {
+    jwt.verify(token, secret, function(err) {
         if (err) {
             // send error response
             res.json({
