@@ -11,9 +11,6 @@ const login = require('./routes/login');
 const reports = require('./routes/reports');
 const week = require('./routes/week');
 
-//JSON Web Tokens
-const jwt = require('jsonwebtoken');
-
 const app = express();
 const port = 1337;
 

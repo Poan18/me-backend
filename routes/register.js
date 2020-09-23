@@ -2,11 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 // Database purposes
-const sqlite3 = require('sqlite3').verbose();
 const db = require("../db/database.js");
-
-//JSON Web Tokens
-const jwt = require('jsonwebtoken');
 
 // For hashing purposes
 const bcrypt = require('bcryptjs');

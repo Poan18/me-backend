@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 
 // Database purposes
-const sqlite3 = require('sqlite3').verbose();
 const db = require("../db/database.js");
 
 // For hashing purposes
@@ -13,7 +12,6 @@ const jwt = require('jsonwebtoken');
 
 // Basic route
 router.post("/", (req, res) => {
-    var pass = req.body.password;
     var email = req.body.email;
 
     db.get("SELECT password FROM users WHERE email=?",
