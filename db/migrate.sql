@@ -103,3 +103,19 @@ sqlite3 texts.sqlite
 Start the server:
 npm start
 View the website at: http://localhost:1337');
+
+INSERT INTO weeks (week, content) VALUES( 3, 'DevOps är som sagt helt nytt för mig så hela kursmomenten var som att leka runt i en skugga, man var aldrig säker på att man gjorde på rätt sätt. Det var helt enkelt att pröva sig fram och hoppas på det bästa.
+
+API-delen var nog det minst krångligt då man behövde inte flytta filerna så särkilt mycket.
+
+Frontend delen var lite mer bökig då det kom fram en mängd med olika problem. En av problemen var att under utvecklingen skickade jag cookies som fungerade fint med hjälp av en proxy man sätter i package.json filen. Tyvärr så brukar man inte använda denna proxy i produktion vilket gjorde att jag behövde komma på en annan lösning. Efter mycket experiment, klurande och läsning av nginx dokumentation så lyckades jag lösa detta genom att sätta en proxy med hjälp av nginx.
+
+En av de största lärdomarna är att det inte var så himla svårt att lägga upp en officiell webbplats, som till och med har certifikat! Sålänge man våga experimentera och pröva sig fram så kan man fixa det och även komma på roliga funktioner som en officiell server erbjuder.');
+
+INSERT INTO weeks (week, content) VALUES( 4, 'Mina tre use-cases för denna veckan blev:
+
+1. Testar pathen "/index" genom att kolla korrekt titel och url
+
+2. Testar pathen "/register" genom att klicka på "Registrera" knappen i navbaren och sedan kolla så att korrekt H2-element och URL visas.
+
+3. Testar pathen "/login" genom att klicka på "Logga In" knappen i navbaren och sedan kolla så att korrekt H2-element och URL visas.');
