@@ -64,7 +64,7 @@ describe('Reports', () => {
                 });
         });
 
-        it('REGISTER THAT EXISTS', (done) => {
+        it('409 REGISTER THAT EXISTS', (done) => {
             chai.request(server)
                 .post("/register")
                 .type('form')
