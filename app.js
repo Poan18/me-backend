@@ -1,4 +1,5 @@
 const express = require('express');
+const expressWs = require('express-ws');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const cors = require('cors');
@@ -10,6 +11,7 @@ const register = require('./routes/register');
 const login = require('./routes/login');
 const reports = require('./routes/reports');
 const week = require('./routes/week');
+const chat = require('./routes/chat');
 
 const app = express();
 const port = 1337;
@@ -30,6 +32,11 @@ app.use('/register', register);
 app.use('/login', login);
 app.use('/reports/week', week);
 app.use('/reports', reports);
+
+// implement websockets
+expressWs(app);
+
+app.ws('/api/chat', chat);
 
 // Start up server
 
