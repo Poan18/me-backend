@@ -12,6 +12,7 @@ const login = require('./routes/login');
 const reports = require('./routes/reports');
 const week = require('./routes/week');
 const chat = require('./routes/chat');
+const messageHistory = require('./routes/messageHistory');
 
 const app = express();
 const port = 1337;
@@ -32,6 +33,7 @@ app.use('/register', register);
 app.use('/login', login);
 app.use('/reports/week', week);
 app.use('/reports', reports);
+app.use('/messageHistory', messageHistory);
 
 // implement websockets
 expressWs(app);
