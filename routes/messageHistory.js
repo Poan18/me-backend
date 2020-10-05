@@ -3,7 +3,7 @@ var router = express.Router();
 
 // MongoDB
 const mongo = require("mongodb").MongoClient;
-const dsn =  process.env.DBWEBB_DSN || "mongodb://localhost:27017/messages";
+const dsn =  "mongodb://localhost:27017/messages";
 
 router.get("/", async (request, response) => {
     try {

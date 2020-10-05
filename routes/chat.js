@@ -2,7 +2,7 @@ const connections = new Set();
 
 // MongoDB
 const mongo = require("mongodb").MongoClient;
-const dsn =  process.env.DBWEBB_DSN || "mongodb://localhost:27017/messages";
+const dsn =  "mongodb://localhost:27017/messages";
 
 const wsHandler = (ws) => {
     connections.add(ws);
